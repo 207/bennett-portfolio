@@ -9,6 +9,17 @@
       content="Bennett Smolen, software engineer. Arlington, VA."
     />
     <meta name="theme-color" content="#f4eee4" />
+    <script>
+      try {
+        var saved = localStorage.getItem('atelier-theme')
+        var dark =
+          saved === 'dark' ||
+          (saved !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.toggle('dark', dark)
+        var themeMeta = document.querySelector('meta[name="theme-color"]')
+        if (themeMeta) themeMeta.setAttribute('content', dark ? '#14110e' : '#f4eee4')
+      } catch (e) {}
+    </script>
     <title>Bennett Smolen — Software Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

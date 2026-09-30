@@ -1,6 +1,7 @@
 :root {
   --mx: 0.5;
   --my: 0.5;
+  --ang: 0;
   --scroll: 0;
   --hero: 0;
 }

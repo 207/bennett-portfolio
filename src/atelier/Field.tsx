@@ -65,22 +65,35 @@ export function Field() {
       return Number.isFinite(v) ? v : fallback
     }
 
+    const blobsFor = (width: number) => {
+      if (width < 640) return [BLOBS[0], BLOBS[1], BLOBS[3]]
+      if (width < 1100) return [BLOBS[0], BLOBS[1], BLOBS[2], BLOBS[4]]
+      return BLOBS
+    }
+
     const paint = (width: number, height: number, mx: number, my: number, time: number) => {
+      const dark = root.classList.contains('dark')
+      const fit = Math.min(1, Math.min(width, height) / 980)
+      const radiusScale = fit * (dark ? 0.42 : 1)
       ctx.clearRect(0, 0, width, height)
-      for (const blob of BLOBS) {
+      ctx.save()
+      ctx.globalAlpha = dark ? 0.3 : 1
+      for (const blob of blobsFor(width)) {
+        const radius = blob.r * radiusScale
         const x =
           (blob.x + Math.sin(time * blob.speed + blob.phase) * blob.ampX + (mx - 0.5) * 0.06) * width
         const y =
           (blob.y + Math.cos(time * blob.speed * 0.85 + blob.phase) * blob.ampY + (my - 0.5) * 0.05) *
           height
-        const g = ctx.createRadialGradient(x, y, 0, x, y, blob.r)
+        const g = ctx.createRadialGradient(x, y, 0, x, y, radius)
         g.addColorStop(0, blob.color)
         g.addColorStop(1, 'rgba(244, 238, 228, 0)')
         ctx.fillStyle = g
         ctx.beginPath()
-        ctx.arc(x, y, blob.r, 0, Math.PI * 2)
+        ctx.arc(x, y, radius, 0, Math.PI * 2)
         ctx.fill()
       }
+      ctx.restore()
     }
 
     const draw = () => {
@@ -95,11 +108,18 @@ export function Field() {
 
     const ro = new ResizeObserver(resize)
     ro.observe(canvas)
+    const theme = new MutationObserver(() => {
+      if (!coarse) return
+      const { width, height } = canvas.getBoundingClientRect()
+      paint(width, height, 0.5, 0.5, 0)
+    })
+    theme.observe(root, { attributes: true, attributeFilter: ['class'] })
     resize()
     if (!coarse) raf = requestAnimationFrame(draw)
     return () => {
       cancelAnimationFrame(raf)
       ro.disconnect()
+      theme.disconnect()
     }
   }, [])
 

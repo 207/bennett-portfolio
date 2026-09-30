@@ -10,8 +10,12 @@ export function Arrival() {
           <span>Software Engineer</span>
         </p>
         <h1 className="at-arrive__title">
-          <span>Bennett</span>
-          <span className="at-arrive__title-em">Smolen</span>
+          <span>
+            <span className="at-name">Bennett</span>
+          </span>
+          <span className="at-arrive__title-em">
+            <span className="at-name">Smolen</span>
+          </span>
         </h1>
         <p className="at-arrive__lede">
           Spring and Kafka at work. Games and tools after hours.

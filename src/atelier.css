@@ -1,3 +1,26 @@
+html.atelier.dark {
+  --at-paper: #14110e;
+  --at-paper-2: #1e1915;
+  --at-cream: #241e19;
+  --at-ink: #f4eee4;
+  --at-ink-2: #e7dcd0;
+  --at-muted: #b3a394;
+  --at-line: rgba(244, 238, 228, 0.14);
+  --at-sage: #8eae90;
+  --at-sage-soft: #3c4d3c;
+  --at-terra: #e07a62;
+  --at-ochre: #e0bc55;
+  --at-indigo: #93a6cc;
+  --at-rose: #dba89a;
+  --at-copper: #d4926a;
+  --at-moss: #a3c0a4;
+  color-scheme: dark;
+}
+
+html.atelier.dark .at-grain {
+  display: none;
+}
+
 html.atelier {
   --at-paper: #f4eee4;
   --at-paper-2: #ebe3d4;
@@ -22,15 +45,28 @@ html.atelier {
   color-scheme: light;
 }
 
+html.atelier {
+  font-size: 17px;
+}
+
 html.atelier,
 html.atelier body {
   background: var(--at-paper);
   color: var(--at-ink);
   font-family: var(--at-sans);
   font-weight: 400;
-  font-size: 17px;
   line-height: 1.55;
   letter-spacing: 0.005em;
+}
+
+html.atelier body {
+  font-size: 1rem;
+}
+
+@media (min-width: 981px) {
+  html.atelier {
+    font-size: clamp(17px, 1.574vh, 23px);
+  }
 }
 
 html.atelier.fine,
@@ -153,7 +189,7 @@ html.atelier.fine .at-cursor {
 }
 
 .at-kicker--on-dark {
-  color: rgba(250, 247, 241, 0.62);
+  color: color-mix(in srgb, var(--at-paper) 62%, transparent);
 }
 
 .at-display {
@@ -173,6 +209,43 @@ html.atelier.fine .at-cursor {
 }
 
 /* Nav */
+.at-nav,
+.at-arrive__copy > .at-kicker,
+.at-arrive__lede,
+.at-arrive__scroll,
+.at-arrive__object {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translate3d(0, 16px, 0);
+  transition:
+    opacity 0.95s var(--at-ease),
+    filter 1.05s var(--at-ease),
+    transform 1s var(--at-ease);
+}
+
+.at.is-booted .at-nav,
+.at.is-booted .at-arrive__copy > .at-kicker,
+.at.is-booted .at-arrive__lede,
+.at.is-booted .at-arrive__scroll,
+.at.is-booted .at-arrive__object {
+  opacity: 1;
+  filter: none;
+  transform: none;
+  transition-delay: 0.42s;
+}
+
+.at.is-booted .at-arrive__object {
+  transition-delay: 0.5s;
+}
+
+.at.is-booted .at-arrive__lede {
+  transition-delay: 0.58s;
+}
+
+.at.is-booted .at-arrive__scroll {
+  transition-delay: 0.68s;
+}
+
 .at-nav {
   position: fixed;
   top: 0;
@@ -216,13 +289,40 @@ html.atelier.fine .at-cursor {
 }
 
 .at-nav__links {
-  justify-self: end;
   display: flex;
   gap: 1.5rem;
   font-family: var(--at-mono);
   font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+}
+
+.at-nav__end {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 1.35rem;
+}
+
+.at-theme {
+  display: grid;
+  place-items: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  margin-left: 0.35rem;
+  padding: 0;
+  border-radius: 50%;
+  color: var(--at-ink);
+  flex: none;
+}
+
+.at-theme svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.at-theme:hover {
+  color: var(--at-terra);
 }
 
 .at-nav__links a {
@@ -253,8 +353,8 @@ html.atelier.fine .at-cursor {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(1.5rem, 5vw, 4rem);
-  align-items: end;
-  padding: 7.5rem var(--at-pad) clamp(2.4rem, 7vh, 4.8rem);
+  align-items: center;
+  padding: 7.5rem var(--at-pad) clamp(2.4rem, 6vh, 4rem);
 }
 
 .at-arrive__copy {
@@ -275,13 +375,37 @@ html.atelier.fine .at-cursor {
   font-optical-sizing: auto;
 }
 
-.at-arrive__title span {
+.at-arrive__title > span {
   display: block;
   width: max-content;
 }
 
-.at-arrive__title span:first-child {
+.at-arrive__title > span:first-child {
   transform: translate3d(calc((var(--mx) - 0.5) * 18px), calc((var(--my) - 0.5) * 8px), 0);
+}
+
+.at-name {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(16px);
+  letter-spacing: 0.06em;
+  transform: translate3d(0, 0.06em, 0);
+  transition:
+    opacity 0.85s var(--at-ease),
+    filter 1s var(--at-ease),
+    letter-spacing 1.05s var(--at-ease),
+    transform 0.95s var(--at-ease);
+}
+
+.at.is-booted .at-name {
+  opacity: 1;
+  filter: none;
+  letter-spacing: -0.055em;
+  transform: none;
+}
+
+.at.is-booted .at-arrive__title-em .at-name {
+  transition-delay: 0.12s;
 }
 
 .at-arrive__title-em {
@@ -416,6 +540,90 @@ html.atelier.fine .at-cursor {
   margin-top: 0.4rem;
 }
 
+.at-stage {
+  perspective: 820px;
+}
+
+.at-tilt {
+  transform: rotateX(calc((var(--my) - 0.5) * -22deg)) rotateY(calc((var(--mx) - 0.5) * 28deg));
+  transform-origin: 50% 50%;
+}
+
+.at-spin,
+.at-puck {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+}
+
+.at-spin {
+  animation: at-spin 28s linear infinite;
+}
+
+.at-spin--back {
+  animation-direction: reverse;
+}
+
+.at-plate-ring,
+.at-spin,
+.at-orbit {
+  fill: none;
+  stroke: color-mix(in srgb, var(--at-ink) 28%, transparent);
+  stroke-width: 1;
+}
+
+.at-orbit {
+  stroke: color-mix(in srgb, var(--at-ochre) 75%, var(--at-ink));
+}
+
+.at-core {
+  animation: none;
+  opacity: 1;
+}
+
+.at-tick {
+  stroke: color-mix(in srgb, var(--at-ink) 22%, transparent);
+  stroke-width: 1;
+}
+
+.at-tick--major {
+  stroke: color-mix(in srgb, var(--at-ink) 55%, transparent);
+  stroke-width: 1.4;
+}
+
+.at-needle {
+  stroke: var(--at-terra);
+  fill: var(--at-terra);
+  stroke-width: 1.4;
+}
+
+.at-node {
+  fill: color-mix(in srgb, var(--at-moss) 55%, var(--at-ink));
+}
+
+.at-puck {
+  fill: var(--at-terra);
+  transform: translate(calc((var(--mx) - 0.5) * 7.5rem), calc((var(--my) - 0.5) * 6rem));
+}
+
+.at-study__switch {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.55rem;
+}
+
+.at-study__switch button {
+  font-family: var(--at-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--at-muted);
+}
+
+.at-study__switch button.is-on {
+  color: var(--at-terra);
+}
+
 /* Mind */
 .at-mind {
   padding: clamp(5.5rem, 14vh, 9.5rem) var(--at-pad) clamp(3rem, 8vh, 5rem);
@@ -478,6 +686,10 @@ html.atelier.fine .at-cursor {
   margin: 0 0 clamp(2.5rem, 8vh, 5rem);
   padding: 0;
   border-top: 1px solid var(--at-line);
+}
+
+.at-works > .at-piece:first-of-type {
+  border-top: none;
 }
 
 .at-index a {
@@ -1019,8 +1231,8 @@ a.at-shot:focus-visible {
   display: flex;
   flex-direction: column;
   padding: clamp(6.5rem, 14vh, 9.5rem) var(--at-pad) 2.4rem;
-  background: #1c1712;
-  color: var(--at-cream);
+  background: var(--at-ink);
+  color: var(--at-paper);
 }
 
 .at-close::before {
@@ -1050,13 +1262,13 @@ a.at-shot:focus-visible {
 .at-close__title em {
   font-style: italic;
   font-weight: 400;
-  color: #e8b089;
+  color: var(--at-terra);
 }
 
 .at-close__lede {
   position: relative;
   max-width: 32rem;
-  color: rgba(250, 247, 241, 0.68);
+  color: color-mix(in srgb, var(--at-paper) 68%, transparent);
   font-size: 1.08rem;
   margin: 0 0 2.4rem;
 }
@@ -1106,16 +1318,16 @@ a.at-shot:focus-visible {
   gap: 1rem;
   margin-top: auto;
   padding-top: 1.4rem;
-  border-top: 1px solid rgba(250, 247, 241, 0.12);
+  border-top: 1px solid color-mix(in srgb, var(--at-paper) 16%, transparent);
   font-family: var(--at-mono);
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(250, 247, 241, 0.5);
+  color: color-mix(in srgb, var(--at-paper) 55%, transparent);
 }
 
 .at-foot a:hover {
-  color: var(--at-cream);
+  color: var(--at-paper);
 }
 
 .at-foot__links {
@@ -1167,7 +1379,7 @@ a.at-shot:focus-visible {
   }
 
   .at-arrive__copy,
-  .at-arrive__title span:first-child,
+  .at-arrive__title > span:first-child,
   .at-arrive__title-em {
     opacity: 1;
     transform: none;
@@ -1259,6 +1471,10 @@ a.at-shot:focus-visible {
     font-size: 0.6rem;
   }
 
+  .at-nav__end {
+    gap: 0.65rem;
+  }
+
   .at-arrive {
     padding-bottom: 2.6rem;
     gap: 0.85rem;
@@ -1290,8 +1506,24 @@ a.at-shot:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .at-nav,
+  .at-arrive__copy > .at-kicker,
+  .at-arrive__lede,
+  .at-arrive__scroll,
+  .at-arrive__object,
+  .at-name {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+
+  .at-name {
+    letter-spacing: -0.055em;
+  }
+
   .at-arrive__copy,
-  .at-arrive__title span,
+  .at-arrive__title > span,
   .at-arrive__title-em,
   .at-cursor,
   .at-chip,
@@ -1307,6 +1539,7 @@ a.at-shot:focus-visible {
   .at-study__halo,
   .at-study__ring,
   .at-study__core,
+  .at-spin,
   .at-arrive__drop::after,
   .at-globe__sphere,
   .at-globe__sphere b,

@@ -17,32 +17,8 @@ export type Work = {
 
 export const works: Work[] = [
   {
-    id: 'fantasy',
-    index: '01',
-    name: 'FantasyAnalysis',
-    kicker: 'League intel',
-    status: 'Local',
-    accent: 'volt',
-    href: 'https://github.com/207/Fantasy',
-    hrefLabel: 'Source',
-    screenshot: '/shots/fantasy.jpg',
-    lede: 'A private analyst for the league. Scrape ESPN league data, consolidate ranks from different sources, then Gemini for waiver and trade recs.',
-    facts: ['Python', 'Streamlit', 'RRF', 'Gemini'],
-  },
-  // BirdsEye stays out until the feeder is further along.
-  // {
-  //   id: 'birdseye',
-  //   index: '02',
-  //   name: 'BirdsEye',
-  //   kicker: 'Bird feeder',
-  //   status: 'WIP',
-  //   accent: 'ice',
-  //   lede: 'Local Bird Buddy clone. Feeder cam and species IDs on your machine.',
-  //   facts: ['Local', 'Camera', 'WIP'],
-  // },
-  {
     id: 'beers',
-    index: '02',
+    index: '01',
     name: '1 Million Beers',
     kicker: 'Group tally',
     status: 'Live',
@@ -56,7 +32,7 @@ export const works: Work[] = [
   },
   {
     id: 'citysnipe',
-    index: '03',
+    index: '02',
     name: 'CitySnipe',
     kicker: 'Geo game',
     status: 'Playable',
@@ -70,7 +46,7 @@ export const works: Work[] = [
   },
   {
     id: 'buzzbowl',
-    index: '04',
+    index: '03',
     name: 'BuzzBowl',
     kicker: 'Quiz bowl',
     status: 'Playable',
@@ -82,4 +58,27 @@ export const works: Work[] = [
     lede: 'Host on a TV. Buzz from phones. Live Socket.io rooms.',
     facts: ['React', 'Node', 'Socket.io'],
   },
+  {
+    id: 'fantasy',
+    index: '04',
+    name: 'FantasyAnalysis',
+    kicker: 'League intel',
+    status: 'Local',
+    accent: 'volt',
+    href: 'https://github.com/207/Fantasy',
+    hrefLabel: 'Source',
+    screenshot: '/shots/fantasy.jpg',
+    lede: 'A private analyst for the league. Scrape ESPN league data, consolidate ranks from different sources, then Gemini for waiver and trade recs.',
+    facts: ['Python', 'Streamlit', 'RRF', 'Gemini'],
+  },
+  // BirdsEye stays out until the feeder is further along.
+  // {
+  //   id: 'birdseye',
+  //   name: 'BirdsEye',
+  //   kicker: 'Bird feeder',
+  //   status: 'WIP',
+  //   accent: 'ice',
+  //   lede: 'Local Bird Buddy clone. Feeder cam and species IDs on your machine.',
+  //   facts: ['Local', 'Camera', 'WIP'],
+  // },
 ]

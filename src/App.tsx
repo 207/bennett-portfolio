@@ -12,6 +12,7 @@ export default function App() {
     const root = document.documentElement
     const fine = window.matchMedia('(pointer: fine)')
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const coarse = window.matchMedia('(hover: none) and (pointer: coarse)')
     const applyPrefs = () => {
       root.classList.toggle('fine', fine.matches)
       root.classList.toggle('reduce', reduce.matches)
@@ -25,6 +26,7 @@ export default function App() {
     const cur = { x: 0.5, y: 0.5 }
 
     const onMove = (e: PointerEvent) => {
+      if (coarse.matches) return
       target.x = e.clientX / window.innerWidth
       target.y = e.clientY / window.innerHeight
       const hit = e.target
@@ -34,17 +36,24 @@ export default function App() {
       )
     }
 
+    let scrollRaf = 0
     const updateScroll = () => {
-      const max = root.scrollHeight - window.innerHeight
-      root.style.setProperty('--scroll', String(max > 0 ? window.scrollY / max : 0))
-      root.style.setProperty(
-        '--hero',
-        String(Math.min(1, window.scrollY / Math.max(window.innerHeight, 1))),
-      )
+      if (scrollRaf) return
+      scrollRaf = requestAnimationFrame(() => {
+        scrollRaf = 0
+        const max = root.scrollHeight - window.innerHeight
+        root.style.setProperty('--scroll', String(max > 0 ? window.scrollY / max : 0))
+        if (coarse.matches) return
+        root.style.setProperty(
+          '--hero',
+          String(Math.min(1, window.scrollY / Math.max(window.innerHeight, 1))),
+        )
+      })
     }
 
     let raf = 0
     const tick = () => {
+      if (coarse.matches) return
       if (!reduceRef.current) {
         cur.x += (target.x - cur.x) * 0.14
         cur.y += (target.y - cur.y) * 0.14
@@ -57,13 +66,16 @@ export default function App() {
       raf = requestAnimationFrame(tick)
     }
 
-    window.addEventListener('pointermove', onMove, { passive: true })
+    if (!coarse.matches) {
+      window.addEventListener('pointermove', onMove, { passive: true })
+      raf = requestAnimationFrame(tick)
+    }
     window.addEventListener('scroll', updateScroll, { passive: true })
     updateScroll()
-    raf = requestAnimationFrame(tick)
 
     return () => {
       cancelAnimationFrame(raf)
+      cancelAnimationFrame(scrollRaf)
       fine.removeEventListener('change', applyPrefs)
       reduce.removeEventListener('change', applyPrefs)
       window.removeEventListener('pointermove', onMove)

@@ -4,11 +4,13 @@ import { Specimen } from './Specimen'
 
 const thoughts: Record<string, string> = {
   fantasy:
-    'A private analyst for the league. ESPN data, fused ranks, then Gemini for waiver and trade recs — on your machine.',
-  birdseye:
-    'A feeder camera and species IDs that stay local. A Bird Buddy for your own hardware, still taking shape.',
+    'A private analyst for the league. Scrape ESPN league data, consolidate ranks from different sources, then Gemini for waiver and trade recs.',
+  // birdseye:
+  //   'A feeder camera and species IDs that stay local. A Bird Buddy for your own hardware, still taking shape.',
+  beers:
+    'The group chat keeps the tally. Pace, rankings, and the long count toward one million beers.',
   citysnipe:
-    'A pin drops on a globe. You name the nearest city. Easy to explain, satisfying to miss by twenty kilometers.',
+    'A pin drops on a globe. You name the nearest city. Compete against your friends in daily challenges across three different difficulties.',
   buzzbowl:
     'Host on a TV, buzz from phones. Live Socket.io rooms — a party game that has to feel instant.',
 }

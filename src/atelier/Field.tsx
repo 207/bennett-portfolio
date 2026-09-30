@@ -30,21 +30,35 @@ export function Field() {
     if (!ctx) return
 
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const coarse = window.matchMedia('(hover: none) and (pointer: coarse)').matches
     const root = document.documentElement
     let raf = 0
     let t = 0
-    const dpr = Math.min(window.devicePixelRatio || 1, 2)
+    let lastW = 0
+    let lastH = 0
+    const dpr = Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 2)
 
     const resize = () => {
       const { width, height } = canvas.getBoundingClientRect()
+      // The mobile toolbar changes viewport height mid-scroll. Resetting the
+      // bitmap then blanks the canvas for a frame, which reads as flicker.
+      if (
+        coarse &&
+        lastW > 0 &&
+        Math.abs(width - lastW) < 2 &&
+        Math.abs(height - lastH) < 160
+      ) {
+        return
+      }
+      lastW = width
+      lastH = height
       canvas.width = Math.max(1, Math.floor(width * dpr))
       canvas.height = Math.max(1, Math.floor(height * dpr))
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      if (coarse) {
+        paint(width, height, 0.5, 0.5, 0)
+      }
     }
-
-    resize()
-    const ro = new ResizeObserver(resize)
-    ro.observe(canvas)
 
     const readVar = (name: string, fallback: number) => {
       const v = Number.parseFloat(root.style.getPropertyValue(name))
@@ -70,6 +84,7 @@ export function Field() {
     }
 
     const draw = () => {
+      if (coarse) return
       const { width, height } = canvas.getBoundingClientRect()
       const mx = readVar('--mx', 0.5)
       const my = readVar('--my', 0.5)
@@ -78,7 +93,10 @@ export function Field() {
       raf = requestAnimationFrame(draw)
     }
 
-    raf = requestAnimationFrame(draw)
+    const ro = new ResizeObserver(resize)
+    ro.observe(canvas)
+    resize()
+    if (!coarse) raf = requestAnimationFrame(draw)
     return () => {
       cancelAnimationFrame(raf)
       ro.disconnect()

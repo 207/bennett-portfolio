@@ -21,7 +21,7 @@ body {
   min-height: 100svh;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 #root {
@@ -66,6 +66,16 @@ img {
   opacity: 1;
   transform: none;
   filter: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    filter: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1273,6 +1273,14 @@ a.at-shot:focus-visible {
   margin: 0 0 2.4rem;
 }
 
+.at-close__actions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+}
+
 .at-cta {
   position: relative;
   display: inline-flex;
@@ -1309,6 +1317,29 @@ a.at-shot:focus-visible {
   background: var(--at-cream);
   color: var(--at-terra);
   transform: translateX(2px);
+}
+
+.at-cta--line {
+  background: transparent;
+  color: var(--at-paper);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--at-paper) 38%, transparent);
+}
+
+.at-cta--line .at-cta__go {
+  background: transparent;
+  color: var(--at-paper);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--at-paper) 38%, transparent);
+}
+
+.at-cta--line:hover {
+  background: var(--at-paper);
+  color: var(--at-ink);
+}
+
+.at-cta--line:hover .at-cta__go {
+  background: var(--at-ink);
+  color: var(--at-paper);
+  transform: translateY(2px);
 }
 
 .at-foot {

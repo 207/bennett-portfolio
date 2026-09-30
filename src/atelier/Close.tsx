@@ -18,12 +18,24 @@ export function Close() {
         </p>
       </Reveal>
       <Reveal delay={180}>
-        <a className="at-cta" href="mailto:bennett.smolen1@gmail.com">
-          <span>bennett.smolen1@gmail.com</span>
-          <span className="at-cta__go" aria-hidden="true">
-            →
-          </span>
-        </a>
+        <div className="at-close__actions">
+          <a className="at-cta" href="mailto:bennett.smolen1@gmail.com">
+            <span>bennett.smolen1@gmail.com</span>
+            <span className="at-cta__go" aria-hidden="true">
+              →
+            </span>
+          </a>
+          <a
+            className="at-cta at-cta--line"
+            href="/bennett-smolen-resume.pdf"
+            download="Bennett Smolen Resume.pdf"
+          >
+            <span>Resume</span>
+            <span className="at-cta__go" aria-hidden="true">
+              ↓
+            </span>
+          </a>
+        </div>
       </Reveal>
       <footer className="at-foot">
         <span>© {new Date().getFullYear()} Bennett Smolen</span>

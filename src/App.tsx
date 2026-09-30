@@ -1,16 +1,12 @@
-import { useEffect, useRef } from 'react'
-import { Cursor, ProgressRail } from './components/Chrome'
-import { Nav } from './components/Nav'
-import { Hero } from './components/Hero'
-import { Manifesto } from './components/Manifesto'
-import { WorkIndex } from './components/WorkIndex'
-import { Chapter } from './components/Chapter'
-import { Experience } from './components/Experience'
-import { Contact } from './components/Contact'
-import { works } from './data/work'
+import { useEffect, useLayoutEffect, useRef } from 'react'
+import { AtelierSite } from './atelier/AtelierSite'
 
 export default function App() {
   const reduceRef = useRef(false)
+
+  useLayoutEffect(() => {
+    document.documentElement.classList.add('atelier')
+  }, [])
 
   useEffect(() => {
     const root = document.documentElement
@@ -75,24 +71,5 @@ export default function App() {
     }
   }, [])
 
-  return (
-    <>
-      <a className="skip" href="#work">
-        Skip to work
-      </a>
-      <Cursor />
-      <ProgressRail />
-      <Nav />
-      <main>
-        <Hero />
-        <Manifesto />
-        <WorkIndex />
-        {works.map((work) => (
-          <Chapter key={work.id} work={work} />
-        ))}
-        <Experience />
-        <Contact />
-      </main>
-    </>
-  )
+  return <AtelierSite />
 }

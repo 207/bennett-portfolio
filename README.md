@@ -1,6 +1,6 @@
 # Bennett Smolen
 
-Personal portfolio — kinetic one-page site.
+Personal portfolio — one-page studio site.
 
 ```bash
 npm install

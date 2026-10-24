@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quotidian Share</title>
+<meta name="description" content="Daily game scores with friends. Share your Wordle, Connections, Maptap and Globle results to Quotidian." />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<style>:root{--paper:#f4eee4;--ink:#1c1712;--muted:#6d6358;--line:rgba(28,23,18,.14);--link:#3d4c72}
+@media(prefers-color-scheme:dark){:root{--paper:#14110e;--ink:#f4eee4;--muted:#b3a394;--line:rgba(244,238,228,.16);--link:#93a6cc}}
+*{box-sizing:border-box}
+html{color-scheme:light dark;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:40rem;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;letter-spacing:-.01em}
+h1{font-size:2rem;margin:0 0 .5rem}
+h2{font-size:1.3rem;margin:2.4rem 0 .6rem}
+p,ul{margin:0 0 1rem}
+ul{padding-left:1.25rem}
+li{margin-bottom:.5rem}
+.date{color:var(--muted);font-size:.9rem;margin-bottom:1.5rem}
+a{color:var(--link);text-underline-offset:.15em;overflow-wrap:anywhere}
+footer{margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+h1+.tag{font-size:1.15rem;margin:0 0 1.5rem;color:var(--muted)}
+.shots{display:flex;gap:.75rem;overflow-x:auto;scroll-snap-type:x mandatory;margin:1.75rem -1.25rem;padding:0 1.25rem;-webkit-overflow-scrolling:touch}
+.shots img{flex:0 0 auto;width:min(13rem,62vw);height:auto;border-radius:1rem;scroll-snap-align:center;border:1px solid var(--line)}
+.games{display:flex;flex-wrap:wrap;gap:.4rem;padding:0;list-style:none;margin:0 0 1rem}
+.games li{margin:0;padding:.15rem .7rem;border:1px solid var(--line);border-radius:99px;font-size:.9rem}
+.links{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;margin:2rem 0 0}
+footer p{margin:.75rem 0 0}
+h3{font-size:1.05rem;margin:1.8rem 0 .4rem}</style>
+</head>
+<body>
+<main>
+<h1>Quotidian Share</h1>
+<p class="tag">Daily game scores with friends.</p>
+<p>Finish a game like Wordle, Connections, Maptap or Globle, tap Share, and choose Quotidian. Your friends see how you did, as a little sticker on their Feed, instead of five group chats.</p>
+<!-- APP STORE BUTTON: add the download link here after launch. -->
+<div class="shots">
+<img src="/quotidian/img/feed.jpg" width="480" height="1043" alt="The Quotidian Feed: today's scores from friends as colorful stickers for Maptap Challenge, Krillion, Worldle and Size It Up." loading="lazy" decoding="async" />
+<img src="/quotidian/img/standings.jpg" width="480" height="1043" alt="Quotidian Standings: how friends ranked in a game." loading="lazy" decoding="async" />
+<img src="/quotidian/img/stats.jpg" width="480" height="1043" alt="Quotidian Stats: streaks, averages and bests for every game." loading="lazy" decoding="async" />
+</div>
+<h2>What's inside</h2>
+<ul>
+<li><strong>Feed.</strong> Everyone's scores today as colorful stickers, with reactions.</li>
+<li><strong>Standings.</strong> A photo-finish track for each game, or a leaderboard.</li>
+<li><strong>Stats.</strong> Streaks, averages and bests for every game.</li>
+<li><strong>Best.</strong> A card for each friend's best result.</li>
+<li><strong>Friends.</strong> Add people by @handle.</li>
+<li><strong>Dark mode.</strong> A dusky one.</li>
+</ul>
+<h2>Games it supports</h2>
+<ul class="games">
+<li>Wordle</li><li>Connections</li><li>NYT Mini</li><li>NYT Midi</li><li>NYT Crossword</li><li>Globle</li><li>Worldle</li><li>Maptap</li><li>Maptap Challenge</li><li>TimeGuessr</li><li>Size It Up</li><li>Krillion</li><li>Daily Tens</li>
+</ul>
+<h2>Private by default</h2>
+<p>Nothing is public. Only friends you accept can see your scores. No ads, no tracking.</p>
+<p class="links"><a href="/quotidian/support/">Support</a> <a href="/quotidian/privacy/">Privacy</a> <a href="/quotidian/terms/">Terms</a></p>
+<footer>Quotidian is not affiliated with The New York Times or any of the games it supports.</footer>
+</main>
+</body>
+</html>
